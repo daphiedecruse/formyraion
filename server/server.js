@@ -6,8 +6,6 @@ const socketIo = require("socket.io"); // Import Socket.io
 const postRoutes = require("./routes/postRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const notificationRoutes = require("./models/notification");
-
-
 const app = express();
 const server = http.createServer(app); // Create HTTP server
 const io = socketIo(server, {
@@ -18,6 +16,7 @@ const io = socketIo(server, {
 });
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 mongoose.connect("mongodb://localhost:27017/valentinesApp", {
